@@ -591,7 +591,14 @@ document.getElementById('createPostBtn').onclick=async()=>{
     const valid=validateNickname(inputNickname);
     if(valid===null){ showAlert("「しんぞ」を含む名前は使えません"); return; }
     if(valid) nickName=valid;
-    sessionStorage.setItem("nickName",nickName);
+    function setCookie(name, value, days=365) {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
+}
+
+setCookie("nickName", nickName);
+
 
     const iconFile=document.getElementById('postIconInput').files[0];
     if(iconFile){ iconBase64=await fileToBase64(iconFile,200,200,0.7); sessionStorage.setItem("icon",iconBase64); }
