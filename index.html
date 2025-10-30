@@ -157,13 +157,16 @@ textarea {
     </select>
   </div>
 
-  <div id="adminFields" style="display:none;">
-    <label>管理者パスワード</label>
-    <input id="adminPasswordInput" type="password" placeholder="パスワード">
-    <label><input type="radio" name="adminAction" value="single"> スレッド削除</label>
-    <label><input type="radio" name="adminAction" value="lock"> スレッドロック</label>
-    <label><input type="radio" name="adminAction" value="unlock"> スレッドロック解除</label>
-    <select id="adminThreadSelect" style="display:block; width: 220px; margin: 5px auto;"></select>
+  <div id="adminFields" style="display:none;"> 
+<label>管理者パスワード</label> 
+<input id="adminPasswordInput" type="password" placeholder="パスワード"> 
+<label><input type="radio" name="adminAction" value="all" checked> 全削除</label> 
+<label><input type="radio" name="adminAction" value="single"> スレッド削除</label> 
+<label><input type="radio" name="adminAction" value="post"> 投稿削除</label> 
+<label><input type="radio" name="adminAction" value="lock"> スレッドロック</label> 
+<label><input type="radio" name="adminAction" value="unlock"> スレッドロック解除</label> 
+<select id="adminThreadSelect" style="display:block; width: 220px; margin: 5px auto;"></select> 
+<select id="adminPostSelect" style="display:block; width: 220px; margin: 5px auto;"></select> 
   </div>
 
   <div id="passwordFields" style="display:none;">
