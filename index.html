@@ -160,13 +160,10 @@ textarea {
   <div id="adminFields" style="display:none;">
     <label>管理者パスワード</label>
     <input id="adminPasswordInput" type="password" placeholder="パスワード">
-    <label><input type="radio" name="adminAction" value="all" checked> 全削除</label>
     <label><input type="radio" name="adminAction" value="single"> スレッド削除</label>
-    <label><input type="radio" name="adminAction" value="post"> 投稿削除</label>
     <label><input type="radio" name="adminAction" value="lock"> スレッドロック</label>
     <label><input type="radio" name="adminAction" value="unlock"> スレッドロック解除</label>
     <select id="adminThreadSelect" style="display:block; width: 220px; margin: 5px auto;"></select>
-    <select id="adminPostSelect" style="display:block; width: 220px; margin: 5px auto;"></select>
   </div>
 
   <div id="passwordFields" style="display:none;">
@@ -244,7 +241,7 @@ function getCookie(name) {
   return null;
 }
 
-let nickName = getCookie("nickName") || "名無しさん";
+let nickName = getCookie("nickName") || "名称未設定";
 
 let iconBase64 = sessionStorage.getItem("icon") || null;
 let currentThreadId = null;
@@ -352,7 +349,7 @@ function closePopup(){
 function validateNickname(input){ 
   if(!input) return null; 
   if(input==="しんぞ2059") return "しんぞ公式"; 
-  if(input.includes("しんぞ")) return null; 
+  if(input.includes("しんぞ公式")) return null; 
   return input; 
 }
 
@@ -474,7 +471,7 @@ function openThread(threadId,data){
   currentThreadId = threadId;
   threadTitleElem.textContent = data.title;
   threadDetailElem.textContent = data.detail || "";
-  threadCreatorElem.textContent = `作成者: ${data.memberId || "名無しさん"} ${formatDate(data.created_at)}`;
+  threadCreatorElem.textContent = `作成者: ${data.memberId || "名称未設定"} ${formatDate(data.created_at)}`;
   threadListSection.style.display='none';
   threadDetailSection.style.display='block';
   loadPosts(threadId);
@@ -498,7 +495,7 @@ async function loadPosts(threadId){
       let bodyText = (pdata.body || "").replace(/\n/g, "<br>");
 let content = `#${count} `;
 if(pdata.icon){ content += `<img src="${pdata.icon}" alt="icon" style="width:32px;height:32px;vertical-align:middle;margin-right:4px;">`; }
-content += `<strong>${pdata.memberId || "名無しさん"}</strong>: ${bodyText}`;
+content += `<strong>${pdata.memberId || "名称未設定"}</strong>: ${bodyText}`;
 li.innerHTML = content;
       const dateEl = document.createElement("small");
       dateEl.textContent = formatRelativeTime(pdata.created_at);
